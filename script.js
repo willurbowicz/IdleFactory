@@ -19,17 +19,12 @@ const ironDrillButton = document.getElementById("ironDrill");
 ironDrillButton.onclick = function () {
   ironDrillCount++;
   document.getElementById("ironDrillCount").innerHTML = ironDrillCount;
+  clearInterval();
+  setInterval(autoMineIron, ironDrillCount * 1000);
 };
 
-async function count() {
-  while (autoMineToggle) {
-    ironCount++;
-    console.log(`Iron count: ${ironCount}`);
-    document.getElementById("ironCount").innerHTML = ironCount;
-    sleep(10000);
-  }
-}
-
-function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
+function autoMineIron() {
+  ironCount++;
+  document.getElementById("ironCount").innerHTML = ironCount;
+  console.log("Iron updated");
 }
