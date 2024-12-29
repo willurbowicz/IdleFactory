@@ -7,7 +7,8 @@ let copperIngotCount = 0;
 let ironDrillCount = 0;
 let copperDrillCount = 0;
 let coalDrillCount = 0;
-let smelterCount = 0;
+let ironSmelterCount = 0;
+let copperSmelterCount = 0;
 
 // Ore mining rates in milliseconds. Default 1 per second.
 let ironOreMiningRate = 1000;
@@ -20,7 +21,8 @@ let copperSmeltingRate = 2000;
 let ironIntervalId = 1;
 let copperIntervalId = 2;
 let coalIntervalId = 3;
-let smeltingIntervalId = 4;
+let ironSmeltingIntervalId = 4;
+let copperSmeltingIntervalId = 5;
 
 const ironButton = document.getElementById("ironOre");
 ironButton.onclick = function () {
@@ -73,17 +75,26 @@ coalDrillButton.onclick = function () {
   coalIntervalId = setInterval(autoMineCoal, coalMiningRate);
 };
 
-const smelterButton = document.getElementById("smelter");
-smelterButton.onclick = function () {
-  smelterCount++;
-  document.getElementById("smelterCount").innerHTML = smelterCount;
-  clearInterval(smeltingIntervalId);
-  recalculateSmeltingRate();
+const ironSmelterButton = document.getElementById("ironSmelter");
+ironSmelterButton.onclick = function () {
+  ironSmelterCount++;
+  document.getElementById("ironSmelterCount").innerHTML = ironSmelterCount;
+  clearInterval(ironSmeltingIntervalId);
+  recalculateIronSmeltingRate();
   document.getElementById("ironSmeltingRate").innerHTML =
     1000 / ironSmeltingRate + " per second";
+  ironSmeltingIntervalId = setInterval(autoSmeltIron, ironSmeltingRate);
+};
+
+const copperSmelterButton = document.getElementById("copperSmelter");
+copperSmelterButton.onclick = function () {
+  copperSmelterCount++;
+  document.getElementById("copperSmelterCount").innerHTML = copperSmelterCount;
+  clearInterval(copperSmeltingIntervalId);
+  recalculateCopperSmeltingRate();
   document.getElementById("copperSmeltingRate").innerHTML =
     1000 / copperSmeltingRate + " per second";
-  smeltingIntervalId = setInterval(autoSmelt, ironSmeltingRate);
+  copperSmeltingIntervalId = setInterval(autoSmeltCopper, copperSmeltingRate);
 };
 
 function autoMineIron() {
@@ -101,12 +112,23 @@ function autoMineCoal() {
   document.getElementById("coalCount").innerHTML = coalCount;
 }
 
-function autoSmelt() {
+function autoSmeltIron() {
   if (ironOreCount > 5 && coalCount > 1) {
     ironOreCount -= 5;
-    coalCount--;
+    coalCount -= 1;
     ironIngotCount++;
     document.getElementById("ironIngotCount").innerHTML = ironIngotCount;
+  } else {
+    console.log("Not enough resources to smelt");
+  }
+}
+
+function autoSmeltCopper() {
+  if (copperOreCount > 5 && coalCount > 1) {
+    copperOreCount -= 5;
+    coalCount -= 1;
+    copperIngotCount++;
+    document.getElementById("copperIngotCount").innerHTML = copperIngotCount;
   } else {
     console.log("Not enough resources to smelt");
   }
@@ -124,7 +146,10 @@ function recalculateCoalMiningRate() {
   coalMiningRate = 1000 / coalDrillCount;
 }
 
-function recalculateSmeltingRate() {
-  ironSmeltingRate = 3000 / smelterCount;
-  copperSmeltingRate = 2000 / smelterCount;
+function recalculateIronSmeltingRate() {
+  ironSmeltingRate = 3000 / ironSmelterCount;
+}
+
+function recalculateCopperSmeltingRate() {
+  copperSmeltingRate = 2000 / copperSmelterCount;
 }

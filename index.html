@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="stylesheet" href="style.css" />
     <title>Idle Factory</title>
   </head>
 
@@ -41,13 +42,15 @@
         <th>Iron Drill</th>
         <th>Copper Drill</th>
         <th>Coal Drill</th>
-        <th>Smelters</th>
+        <th>Iron Smelters</th>
+        <th>Copper Smelters</th>
       </tr>
       <tr>
         <th id="ironDrillCount">0</th>
         <th id="copperDrillCount">0</th>
         <th id="coalDrillCount">0</th>
-        <th id="smelterCount">0</th>
+        <th id="ironSmelterCount">0</th>
+        <th id="copperSmelterCount">0</th>
       </tr>
     </table>
     <br />
@@ -67,29 +70,38 @@
           <button id="coal" style="height: 100px; width: 100px">Coal</button>
         </td>
       </tr>
-      <tr>
-        <td>
+    </table>
+
+    <div class="sidebar">
+      <h2 style="text-align: center">Shop</h2>
+      <table style="align-items: center">
+        <tr>
           <button id="ironDrill" style="height: 100px; width: 100px">
             Iron Drill
           </button>
-        </td>
-        <td>
+        </tr>
+        <tr>
           <button id="copperDrill" style="height: 100px; width: 100px">
             Copper Drill
           </button>
-        </td>
-        <td>
+        </tr>
+        <tr>
           <button id="coalDrill" style="height: 100px; width: 100px">
             Coal Drill
           </button>
-        </td>
-        <td>
-          <button id="smelter" style="height: 100px; width: 100px">
-            Smelter
+        </tr>
+        <tr>
+          <button id="ironSmelter" style="height: 100px; width: 100px">
+            Iron Smelter
           </button>
-        </td>
-      </tr>
-    </table>
+        </tr>
+        <tr>
+          <button id="copperSmelter" style="height: 100px; width: 100px">
+            Copper Smelter
+          </button>
+        </tr>
+      </table>
+    </div>
 
     <script src="script.js"></script>
   </body>
