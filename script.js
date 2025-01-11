@@ -45,55 +45,60 @@ coalButton.onclick = function () {
 const ironDrillButton = document.getElementById("ironDrill");
 ironDrillButton.onclick = function () {
   ironDrillCount++;
-  document.getElementById("ironDrillCount").innerHTML = ironDrillCount;
+  document.getElementById("ironDrill").innerHTML =
+    "Iron Drill: " + ironDrillCount;
   clearInterval(ironIntervalId);
   recalculateIronOreMiningRate();
   document.getElementById("ironOreMiningRate").innerHTML =
-    1000 / ironOreMiningRate + " per second";
+    Number((1000 / ironOreMiningRate).toFixed(2)) + " per second";
   ironIntervalId = setInterval(autoMineIron, ironOreMiningRate);
 };
 
 const copperDrillButton = document.getElementById("copperDrill");
 copperDrillButton.onclick = function () {
   copperDrillCount++;
-  document.getElementById("copperDrillCount").innerHTML = copperDrillCount;
+  document.getElementById("copperDrill").innerHTML =
+    "Copper Drill: " + copperDrillCount;
   clearInterval(copperIntervalId);
   recalculateCopperOreMiningRate();
   document.getElementById("copperOreMiningRate").innerHTML =
-    1000 / copperOreMiningRate + " per second";
+    Number((1000 / copperOreMiningRate).toFixed(2)) + " per second";
   copperIntervalId = setInterval(autoMineCopper, copperOreMiningRate);
 };
 
 const coalDrillButton = document.getElementById("coalDrill");
 coalDrillButton.onclick = function () {
   coalDrillCount++;
-  document.getElementById("coalDrillCount").innerHTML = coalDrillCount;
+  document.getElementById("coalDrill").innerHTML =
+    "Coal Drill: " + coalDrillCount;
   clearInterval(coalIntervalId);
   recalculateCoalMiningRate();
   document.getElementById("coalMiningRate").innerHTML =
-    1000 / coalMiningRate + " per second";
+    Number((1000 / coalMiningRate).toFixed(2)) + " per second";
   coalIntervalId = setInterval(autoMineCoal, coalMiningRate);
 };
 
 const ironSmelterButton = document.getElementById("ironSmelter");
 ironSmelterButton.onclick = function () {
   ironSmelterCount++;
-  document.getElementById("ironSmelterCount").innerHTML = ironSmelterCount;
+  document.getElementById("ironSmelter").innerHTML =
+    "Iron Smelter: " + ironSmelterCount;
   clearInterval(ironSmeltingIntervalId);
   recalculateIronSmeltingRate();
   document.getElementById("ironSmeltingRate").innerHTML =
-    1000 / ironSmeltingRate + " per second";
+    Number((1000 / ironSmeltingRate).toFixed(2)) + " per second";
   ironSmeltingIntervalId = setInterval(autoSmeltIron, ironSmeltingRate);
 };
 
 const copperSmelterButton = document.getElementById("copperSmelter");
 copperSmelterButton.onclick = function () {
   copperSmelterCount++;
-  document.getElementById("copperSmelterCount").innerHTML = copperSmelterCount;
+  document.getElementById("copperSmelter").innerHTML =
+    "Copper Smelter: " + copperSmelterCount;
   clearInterval(copperSmeltingIntervalId);
   recalculateCopperSmeltingRate();
   document.getElementById("copperSmeltingRate").innerHTML =
-    1000 / copperSmeltingRate + " per second";
+    Number((1000 / copperSmeltingRate).toFixed(2)) + " per second";
   copperSmeltingIntervalId = setInterval(autoSmeltCopper, copperSmeltingRate);
 };
 
@@ -120,6 +125,7 @@ function autoSmeltIron() {
     document.getElementById("ironIngotCount").innerHTML = ironIngotCount;
   } else {
     console.log("Not enough resources to smelt");
+    document.getElementById("ironIngotCount").innerHTML = ironIngotCount;
   }
 }
 
@@ -131,25 +137,26 @@ function autoSmeltCopper() {
     document.getElementById("copperIngotCount").innerHTML = copperIngotCount;
   } else {
     console.log("Not enough resources to smelt");
+    document.getElementById("copperIngotCount").innerHTML = copperIngotCount;
   }
 }
 
 function recalculateIronOreMiningRate() {
-  ironOreMiningRate = 1000 / ironDrillCount;
+  ironOreMiningRate = Number((1000 / ironDrillCount).toFixed(2));
 }
 
 function recalculateCopperOreMiningRate() {
-  copperOreMiningRate = 1000 / copperDrillCount;
+  copperOreMiningRate = Number((1000 / copperDrillCount).toFixed(2));
 }
 
 function recalculateCoalMiningRate() {
-  coalMiningRate = 1000 / coalDrillCount;
+  coalMiningRate = Number((1000 / coalDrillCount).toFixed(2));
 }
 
 function recalculateIronSmeltingRate() {
-  ironSmeltingRate = 3000 / ironSmelterCount;
+  ironSmeltingRate = Number((3000 / ironSmelterCount).toFixed(2));
 }
 
 function recalculateCopperSmeltingRate() {
-  copperSmeltingRate = 2000 / copperSmelterCount;
+  copperSmeltingRate = Number((2000 / copperSmelterCount).toFixed(2));
 }
